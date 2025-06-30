@@ -12,10 +12,12 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10'
     }
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     namespace "com.dramaverse.capacitor.jpush"
@@ -26,6 +28,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // JPush configuration placeholders
+        manifestPlaceholders = [
+            JPUSH_PKGNAME: project.hasProperty('JPUSH_PKGNAME') ? rootProject.ext.JPUSH_PKGNAME : "com.dramaverse.capacitor.jpush",
+            JPUSH_APPKEY: project.hasProperty('JPUSH_APPKEY') ? rootProject.ext.JPUSH_APPKEY : "your_jpush_appkey_here",
+            JPUSH_CHANNEL: project.hasProperty('JPUSH_CHANNEL') ? rootProject.ext.JPUSH_CHANNEL : "developer-default"
+        ]
     }
     buildTypes {
         release {
@@ -40,11 +49,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
+
+    kotlinOptions {
+        jvmTarget = '21'
+    }
+
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/kotlin'
+    }
 }
 
 repositories {
     google()
     mavenCentral()
+    // JPush repository
+    maven { url 'https://developer.huawei.com/repo/' }
 }
 
 
@@ -52,6 +71,25 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+
+    // JPush core SDK
+    implementation 'cn.jiguang.sdk:jpush:5.3.4'
+    implementation 'cn.jiguang.sdk:jcore:3.0.4'
+
+    // JPush vendor channel plugins
+    implementation 'cn.jiguang.sdk.plugin:huawei:5.3.4'
+    implementation 'cn.jiguang.sdk.plugin:xiaomi:5.3.4'
+    implementation 'cn.jiguang.sdk.plugin:oppo:5.3.4'
+    implementation 'cn.jiguang.sdk.plugin:vivo:5.3.4'
+    implementation 'cn.jiguang.sdk.plugin:fcm:5.3.4'
+
+    // Additional dependencies for vendor channels
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
+
+    // Kotlin dependencies
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.10'
+    implementation 'androidx.core:core-ktx:1.13.1'
+
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
