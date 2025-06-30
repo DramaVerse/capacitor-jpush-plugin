@@ -14,4 +14,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '14.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.1'
+
+  # JPush iOS SDK dependencies
+  s.dependency 'JCore', '~> 3.0.4'
+  s.dependency 'JPush', '~> 5.3.4'
+
+  # Required frameworks
+  s.frameworks = 'Foundation', 'UIKit', 'UserNotifications', 'CoreFoundation', 'CoreTelephony', 'SystemConfiguration', 'CoreGraphics', 'Security', 'CFNetwork', 'AdSupport'
+  s.libraries = 'z', 'resolv'
 end
