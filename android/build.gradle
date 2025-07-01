@@ -73,15 +73,15 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
 
     // JPush core SDK
-    implementation 'cn.jiguang.sdk:jpush:5.3.4'
-    implementation 'cn.jiguang.sdk:jcore:3.0.4'
+    implementation 'cn.jiguang.sdk:jpush:5.6.1'
+    implementation 'cn.jiguang.sdk:jcore:5.0.2'
 
     // JPush vendor channel plugins
-    implementation 'cn.jiguang.sdk.plugin:huawei:5.3.4'
-    implementation 'cn.jiguang.sdk.plugin:xiaomi:5.3.4'
-    implementation 'cn.jiguang.sdk.plugin:oppo:5.3.4'
-    implementation 'cn.jiguang.sdk.plugin:vivo:5.3.4'
-    implementation 'cn.jiguang.sdk.plugin:fcm:5.3.4'
+    implementation 'cn.jiguang.sdk.plugin:huawei:5.6.1'
+    implementation 'cn.jiguang.sdk.plugin:xiaomi:5.6.1'
+    implementation 'cn.jiguang.sdk.plugin:oppo:5.6.1'
+    implementation 'cn.jiguang.sdk.plugin:vivo:5.6.1'
+    implementation 'cn.jiguang.sdk.plugin:fcm:5.6.1'
 
     // Additional dependencies for vendor channels
     implementation 'com.google.firebase:firebase-messaging:24.1.0'

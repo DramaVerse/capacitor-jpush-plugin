@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.swift_version = '5.1'
 
   # JPush iOS SDK dependencies
-  s.dependency 'JCore', '~> 3.0.4'
-  s.dependency 'JPush', '~> 5.3.4'
+  s.dependency 'JCore', '~> 5.0.2'
+  s.dependency 'JPush', '~> 5.6.1'
 
   # Required frameworks
   s.frameworks = 'Foundation', 'UIKit', 'UserNotifications', 'CoreFoundation', 'CoreTelephony', 'SystemConfiguration', 'CoreGraphics', 'Security', 'CFNetwork', 'AdSupport'
